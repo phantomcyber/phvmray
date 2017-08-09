@@ -9,8 +9,6 @@ if False:  # pylint: disable=using-constant-test
     # pylint: disable=unused-import,import-error
     from typing import Any, List, Text  # NOQA
 
-# pylint: disable=vmray-py2-builtin-open
-
 
 class UnicodeFileType(FileType):
     def __init__(self, *args, **kwargs):
