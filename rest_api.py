@@ -8,22 +8,6 @@ import urlparse
 
 import requests
 
-# disable nasty certification warning
-# pylint: disable=no-member
-try:
-    requests.packages.urllib3.disable_warnings()
-except AttributeError:
-    try:
-        import urllib3
-        try:
-            urllib3.disable_warnings()
-        except AttributeError:
-            pass
-    except ImportError:
-        pass
-
-# pylint: disable=
-
 
 class VMRayRESTAPIError(Exception):
     """Exception class that is used when API returns an error"""

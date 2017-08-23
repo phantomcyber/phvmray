@@ -54,7 +54,6 @@ if False:  # pylint: disable=using-constant-test
     # pylint: disable=unused-import,import-error
     from typing import Any, Text, Tuple, Union  # NOQA
 
-# pylint: disable=vmray-py2-builtin-open
 # pylint: disable=broad-except
 
 
@@ -206,7 +205,6 @@ class VMRayConnector(BaseConnector):
 
         try:
             # again wiredness due to mypy
-            # pylint: disable=vmray-not-in-with
             zifi = zipfile.ZipFile(str(zip_file_location), str("r"))
         except Exception as exc:
             self.set_status(phantom.APP_ERROR, VMRAY_ERR_OPEN_ZIP, exc)
