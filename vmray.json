@@ -8,7 +8,7 @@
     "license": "Copyright (c) VMRay GmbH 2017",
     "main_module": "vmray_connector.pyc",
     "app_version": "1.0.4",
-    "min_phantom_version": "2.1.467",
+    "min_phantom_version": "3.0.190",
     "product_vendor": "VMRay GmbH",
     "product_name": "VMRay Analyzer",
     "product_version_regex": ".*",
@@ -36,7 +36,7 @@
     "actions": [
         {
             "action": "test connectivity",
-            "description": "Validate the asset configuration for connectivity.",
+            "description": "Validate the asset configuration for connectivity",
             "type": "test",
             "identifier": "test_asset_connectivity",
             "read_only": true,
@@ -305,26 +305,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -419,26 +410,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -459,26 +441,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.md5_hash",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.sha1_hash",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.sha256_hash",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -700,26 +673,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -814,26 +778,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -854,10 +809,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.md5_hash",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
@@ -1054,26 +1006,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.analysis_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -1168,26 +1111,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_md5",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha1",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.reputation_lookup.reputation_lookup_sample_sha256",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -1208,26 +1142,17 @@
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.md5_hash",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.sha1_hash",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.analysis.summary.extracted_files.*.sha256_hash",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
@@ -1390,10 +1315,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.sample_md5hash",
-                    "contains": [
-                        "hash",
-                        "md5"
-                    ],
+                    "contains": [ "md5" ],
                     "data_type": "string"
                 },
                 {
@@ -1410,18 +1332,12 @@
                 },
                 {
                     "data_path": "action_result.data.*.sample_sha1hash",
-                    "contains": [
-                        "hash",
-                        "sha1"
-                    ],
+                    "contains": [ "sha1" ],
                     "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.sample_sha256hash",
-                    "contains": [
-                        "hash",
-                        "sha256"
-                    ],
+                    "contains": [ "sha256" ],
                     "data_type": "string"
                 },
                 {
