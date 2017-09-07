@@ -72,6 +72,7 @@ def _analysis_severity_by_score(score):
 # see sample_model.py severity(self, user)
 def _severity(highest_vti_score, reputation_severity):
     # type: (int, Text) -> Text
+    """Get severity text from VTI score and reputation."""
 
     if highest_vti_score is not None:
         # there exists at least one analysis score
@@ -113,6 +114,7 @@ class VMRayConnector(BaseConnector):
 
     def _test_connectivity(self, _):
         # type: (Dict[Text, Any]) -> bool
+        """Tests if the app is able to connect to the analyzer"""
 
         config = self.get_config()
 
@@ -139,6 +141,7 @@ class VMRayConnector(BaseConnector):
 
     def _get_api(self):
         # type: () -> Tuple[bool, VMRay]
+        """Instantiate a VMRay API object."""
 
         if self._api is not None:
             return (self.get_status(), self._api)
@@ -161,6 +164,7 @@ class VMRayConnector(BaseConnector):
 
     def _handle_get_file(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Download file from Analyzer and store in phantom vault."""
 
         status, api = self._get_api()
         if api is None:
@@ -172,6 +176,7 @@ class VMRayConnector(BaseConnector):
 
         self.save_progress("Searching %s" % (hsh))
 
+        # guess hash type by length and see if it's on the server
         if len(hsh) == 32:
             res = api.get_sample_by_md5(hsh)
         elif len(hsh) == 40:
@@ -292,17 +297,21 @@ class VMRayConnector(BaseConnector):
 
     def _handle_detonate_file(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Submits a file to the analyzer and returns the result if the analysis
+        finishes within the default timeout."""
 
         status, api = self._get_api()
         if api is None:
             return status
 
+        # get info from phantom vault
         vault_id = param["vault_id"]
         file_path = Vault.get_file_path(vault_id)
         file_info = Vault.get_file_info(vault_id=vault_id)
 
         self.save_progress("Submitting file %s" % vault_id)
 
+        # force reanalyze. Hence, submission will always be executed on analyzer
         params = {"reanalyze": True}  # type: Dict[Text, Any]
         if param.get("comment", None) is not None:
             params["comment"] = param["comment"]
@@ -367,6 +376,8 @@ class VMRayConnector(BaseConnector):
 
     def _handle_detonate_url(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Submits a URL to the analyzer and returns the result if the analysis
+        finishes within the default timeout."""
 
         status, api = self._get_api()
         if api is None:
@@ -376,6 +387,7 @@ class VMRayConnector(BaseConnector):
 
         self.save_progress("Submitting url %s" % url)
 
+        # force reanalyze. Hence, submission will always be executed on analyzer
         params = {"reanalyze": True}
         if param.get("comment", None) is not None:
             params["comment"] = param["comment"]
@@ -433,6 +445,10 @@ class VMRayConnector(BaseConnector):
         # not working due to mypy bug ...
         # # type: (int, int) -> Union[Tuple[bool, Tuple[str, Exception]],
         # Tuple[bool, Dict[str, Any]]]
+        """This function aggregates the analysis results of the submission with
+        submission_id. It will wait timeout long for the submission to finish
+        before failing. If the submission is finished it will aggregate and
+        return all analyses, reputation lookups, and summaries."""
 
         status, api = self._get_api()
         if api is None:
@@ -478,6 +494,7 @@ class VMRayConnector(BaseConnector):
         except Exception as exc:
             return (phantom.APP_ERROR, (VMRAY_ERR_GET_SUBMISSION, exc))
 
+        # get reputation lookups if possible
         reputation_severity = None
         reputation_lookup = None
         try:
@@ -488,6 +505,7 @@ class VMRayConnector(BaseConnector):
         except Exception:
             self.save_progress("Reputation lookup failed")
 
+        # calculate the resulting severity and get the summary.json files
         highest_vti_score = None
         for analysis in analyses:
             if analysis.get("analysis_result_code", -1) == 1:
@@ -510,6 +528,8 @@ class VMRayConnector(BaseConnector):
 
     def _handle_get_report(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Given a submission_id this function gets the submission's results
+        and brings them into a phantom friendly format."""
 
         submission_id = int(param["submission_id"])
 
@@ -549,6 +569,9 @@ class VMRayConnector(BaseConnector):
 
     def _handle_get_info(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Queries the Analyzer for a certain hash. If the sample exists and
+        has at least one finished submission, sample information is returned
+        """
 
         status, api = self._get_api()
         if api is None:
@@ -567,6 +590,7 @@ class VMRayConnector(BaseConnector):
 
         self.save_progress("Searching %s" % (hsh))
 
+        # guess hash type by length and see if it's on the server
         if len(hsh) == 32:
             res = api.get_sample_by_md5(hsh)
         elif len(hsh) == 40:
@@ -583,6 +607,8 @@ class VMRayConnector(BaseConnector):
 
         self.save_progress("Check for finished submissions")
 
+        # check if a finished submission is available. try until timeout is
+        # reached.
         has_finished_submission = False
         seconds_waited = 0
         while True:
@@ -626,6 +652,7 @@ class VMRayConnector(BaseConnector):
 
     def handle_action(self, param):
         # type: (Dict[Text, Any]) -> bool
+        """Main handler function. Chooses action handler to execute"""
 
         ret_val = phantom.APP_SUCCESS
 
