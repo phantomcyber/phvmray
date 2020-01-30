@@ -466,6 +466,7 @@ class VMRayConnector(BaseConnector):
                 return (phantom.APP_ERROR, (VMRAY_ERR_GET_SUBMISSION, exc))
 
             self.send_progress("Checking submission status")
+            self.debug_print(json.dumps(submission, indent=4))
             submission_finished = submission["submission_finished"]
             submission_url = submission["submission_webif_url"]
             if submission_finished or timeout == 0:
